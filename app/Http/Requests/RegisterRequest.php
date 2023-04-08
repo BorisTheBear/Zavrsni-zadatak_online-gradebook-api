@@ -28,9 +28,9 @@ class RegisterRequest extends FormRequest
             'email' => 'required|email|between:2,255|unique:users',
             'password' => [
                 'required',
-                Password::min(8)->numbers(),
-                'confirmed'
+                Password::min(8)->numbers()
             ],
+            'password_confirmation' => 'required|same:password',
             'image_url' => 'required|string'
         ];
     }
