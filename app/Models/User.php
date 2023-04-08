@@ -70,4 +70,18 @@ class User extends Authenticatable implements JWTSubject
     public function gradebook() {
         return $this->hasOne(Gradebook::class);
     }
+
+    public static function scopeSearchByName($query, $name) {
+        if(!$name) {
+            return $query;
+        }
+        return $query->where('first_name', 'like', "%$name%");
+    }
+
+    public static function scopeSearchByLastName($query, $lastName) {
+        if(!$lastName) {
+            return $query;
+        }
+        return $query->where('last_name', 'like', "%$lastName%");
+    }
 }
