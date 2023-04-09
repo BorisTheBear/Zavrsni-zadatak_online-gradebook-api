@@ -20,6 +20,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout']);
+Route::post('/gradebooks', [GradebooksController::class, 'store']);
 
 Route::get('/gradebooks', [GradebooksController::class, 'index']);
+Route::get('/gradebooks/{id}', [GradebooksController::class, 'show']);
 Route::get('/teachers', [UsersController::class, 'index']);
+Route::get('/teachers/{id}', [UsersController::class, 'show']);

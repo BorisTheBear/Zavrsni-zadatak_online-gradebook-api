@@ -2,34 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateGradebookRequest;
+use App\Models\Comment;
 use App\Models\Gradebook;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class GradebooksController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $name = $request->query('name', '');
-        $per_page = $request->query('per_page', 10);
-
-        $gradebooks = Gradebook::searchByName($name)
-            ->paginate($per_page);
-
-        return response()->json($gradebooks);
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CreateGradebookRequest $request)
+    public function store(Request $request)
     {
-        $gradebook = Gradebook::create($request->validated());
+        $comment = Comment::create($request->validated());
 
-        return response()->json($gradebook);
+        $gradebook = Gradebook::findOrFail($request->gradebook_id);
+        $comment->gradebook()->associate($gradebook);
+        $comment->user()->associate(Auth::user());
+
+        return response()->json($comment);
     }
 
     /**
@@ -37,8 +36,7 @@ class GradebooksController extends Controller
      */
     public function show(string $id)
     {
-        $gradebook = Gradebook::findOrFail($id);
-        return response()->json($gradebook);
+        //
     }
 
     /**

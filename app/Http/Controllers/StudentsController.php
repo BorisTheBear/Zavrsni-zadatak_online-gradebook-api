@@ -2,33 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Http\Requests\CreateStudentRequest;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
-class UsersController extends Controller
+class StudentsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $name = $request->query('first_name', '');
-        $lastName = $request->query('last_name', '');
-        $per_page = $request->query('per_page', '');
-
-        $teachers = User::searchByName($name)
-            ->searchByLastName($lastName)
-            ->paginate($per_page);
-
-        return response()->json($teachers);
+        $students = Student::all();
+        return $students;
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateStudentRequest $request)
     {
-        //
+        $student = Student::create($request->validated());
+
+        return response()->json($student);
     }
 
     /**
@@ -36,8 +32,7 @@ class UsersController extends Controller
      */
     public function show(string $id)
     {
-        $user = User::findOrFail($id);
-        return response()->json($user);
+        //
     }
 
     /**

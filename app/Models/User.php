@@ -71,6 +71,10 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasOne(Gradebook::class);
     }
 
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
+
     public static function scopeSearchByName($query, $name) {
         if(!$name) {
             return $query;
