@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GradebooksController;
+use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,6 +22,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout']);
 Route::post('/gradebooks', [GradebooksController::class, 'store']);
+Route::post('/JJJJJJJJJJJ', [StudentsController::class, 'store']);
 
 Route::get('/gradebooks', [GradebooksController::class, 'index']);
 Route::get('/gradebooks/{id}', [GradebooksController::class, 'show']);
