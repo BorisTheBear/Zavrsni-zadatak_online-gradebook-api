@@ -16,7 +16,7 @@ class UsersController extends Controller
         $lastName = $request->query('last_name', '');
         $per_page = $request->query('per_page', '');
 
-        $teachers = User::searchByName($name)
+        $teachers = User::with('gradebook')->searchByName($name)
             ->searchByLastName($lastName)
             ->paginate($per_page);
 
@@ -36,7 +36,7 @@ class UsersController extends Controller
      */
     public function show(string $id)
     {
-        $user = User::findOrFail($id);
+        $user = User::with('gradebook')->findOrFail($id);
         return response()->json($user);
     }
 

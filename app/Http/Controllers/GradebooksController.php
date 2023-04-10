@@ -16,7 +16,8 @@ class GradebooksController extends Controller
         $name = $request->query('name', '');
         $per_page = $request->query('per_page', 10);
 
-        $gradebooks = Gradebook::searchByName($name)
+        $gradebooks = Gradebook::with('user')->searchByName($name)
+            ->orderByDesc('created_at')
             ->paginate($per_page);
 
         return response()->json($gradebooks);
