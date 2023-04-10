@@ -22,7 +22,7 @@ class StudentFactory extends Factory
         self::$studentCounter++;
         $gradebookId = ceil(self::$studentCounter/10);
         return [
-            'first_name' => $this->faker->name(),
+            'first_name' => $this->faker->firstName(),
             'last_name' => $this->faker->lastName(),
             'image_url' => $this->faker->imageUrl(),
             'gradebook_id' => $gradebookId

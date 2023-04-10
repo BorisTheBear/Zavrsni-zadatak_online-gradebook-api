@@ -13,6 +13,8 @@ class Gradebook extends Model
         'name', 'user_id'
     ];
 
+    // protected $with = ['user', 'students'];
+
     public function user() {
         return $this->belongsTo(User::class);
     }

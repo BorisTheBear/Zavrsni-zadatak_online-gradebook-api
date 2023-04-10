@@ -38,7 +38,7 @@ class GradebooksController extends Controller
      */
     public function show(string $id)
     {
-        $gradebook = Gradebook::findOrFail($id);
+        $gradebook = Gradebook::with('user','students')->findOrFail($id);
         return response()->json($gradebook);
     }
 

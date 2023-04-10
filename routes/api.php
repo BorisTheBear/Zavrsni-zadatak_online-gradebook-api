@@ -22,7 +22,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout']);
 Route::post('/gradebooks', [GradebooksController::class, 'store']);
-Route::post('/JJJJJJJJJJJ', [StudentsController::class, 'store']);
+Route::post('/students', [StudentsController::class, 'store']);
 
 Route::get('/gradebooks', [GradebooksController::class, 'index']);
 Route::get('/gradebooks/{id}', [GradebooksController::class, 'show']);

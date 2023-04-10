@@ -67,7 +67,7 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    // protected $with = ['gradebook', 'comments'];
+    // protected $with = ['gradebook'];
 
     public function gradebook() {
         return $this->hasOne(Gradebook::class);
