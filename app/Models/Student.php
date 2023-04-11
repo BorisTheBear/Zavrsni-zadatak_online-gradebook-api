@@ -10,7 +10,7 @@ class Student extends Model
     use HasFactory;
 
     protected $fillable = [
-        'first_name', 'last_name', 'image_url'
+        'first_name', 'last_name', 'image_url', 'gradebook_id'
     ];
 
     public function gradebook() {
