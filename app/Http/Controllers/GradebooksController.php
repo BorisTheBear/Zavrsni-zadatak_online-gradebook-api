@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateGradebookRequest;
+use App\Http\Requests\UpdateGradebookRequest;
 use App\Models\Gradebook;
 use Illuminate\Http\Request;
 
@@ -45,9 +46,11 @@ class GradebooksController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateGradebookRequest $request, string $id)
     {
-        //
+        $gradebook = Gradebook::findOrFail($id);
+        $gradebook->update($request->validated());
+        return response()->json($gradebook);
     }
 
     /**
@@ -55,6 +58,7 @@ class GradebooksController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $gradebook = Gradebook::findOrFail($id);
+        $gradebook->delete();
     }
 }

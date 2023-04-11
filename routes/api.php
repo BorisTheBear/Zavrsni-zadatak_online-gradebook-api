@@ -29,3 +29,7 @@ Route::get('/gradebooks/{id}', [GradebooksController::class, 'show']);
 Route::get('/teachers', [UsersController::class, 'index']);
 Route::get('/teachers/{id}', [UsersController::class, 'show']);
 Route::get('/me', [UsersController::class, 'me']);
+
+Route::put('/gradebooks/{id}', [GradebooksController::class, 'update']);
+
+Route::delete('/gradebooks/{id}', [GradebooksController::class, 'destroy']);
