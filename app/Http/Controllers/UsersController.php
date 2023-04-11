@@ -64,7 +64,7 @@ class UsersController extends Controller
     public function me() {
         return response()->json(User::with(['gradebook' => function ($query)
         {
-            $query->withCount('students');
+            $query->with('students');
         }])->findOrFail(Auth::user()->id));
     }
 }
