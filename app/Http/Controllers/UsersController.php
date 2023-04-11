@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
@@ -14,7 +15,7 @@ class UsersController extends Controller
     {
         $name = $request->query('first_name', '');
         $lastName = $request->query('last_name', '');
-        $per_page = $request->query('per_page', '');
+        $per_page = $request->query('per_page', 50);
 
         $teachers = User::with('gradebook')->searchByName($name)
             ->searchByLastName($lastName)
@@ -36,7 +37,11 @@ class UsersController extends Controller
      */
     public function show(string $id)
     {
-        $user = User::with('gradebook')->findOrFail($id);
+        $user = User::with(['gradebook' => function ($query)
+        {
+            $query->withCount('students');
+        }])->findOrFail($id);
+
         return response()->json($user);
     }
 
@@ -54,5 +59,12 @@ class UsersController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function me() {
+        return response()->json(User::with(['gradebook' => function ($query)
+        {
+            $query->withCount('students');
+        }])->findOrFail(Auth::user()->id));
     }
 }

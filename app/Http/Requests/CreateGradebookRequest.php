@@ -22,8 +22,8 @@ class CreateGradebookRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'user_id' => 'required|exists:users,id'
+            'name' => 'required|string|min:2|max:255',
+            'user_id' => 'exists:users,id|nullable|unique:gradebooks,user_id'
         ];
     }
 }

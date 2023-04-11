@@ -23,7 +23,8 @@ class CreateCommentRequest extends FormRequest
     {
         return [
             'content' => 'required|min:2|max:3000|string',
-            'gradebook_id' => 'required|exists:gradebooks,id'
+            'gradebook_id' => 'required|exists:gradebooks,id',
+            'user_id' => 'exists:users,id'
         ];
     }
 }
