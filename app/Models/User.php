@@ -81,13 +81,13 @@ class User extends Authenticatable implements JWTSubject
         if(!$name) {
             return $query;
         }
-        return $query->where('first_name', 'like', "%$name%");
+        return $query->orWhere('first_name', 'like', "%$name%");
     }
 
     public static function scopeSearchByLastName($query, $lastName) {
         if(!$lastName) {
             return $query;
         }
-        return $query->where('last_name', 'like', "%$lastName%");
+        return $query->orWhere('last_name', 'like', "%$lastName%");
     }
 }

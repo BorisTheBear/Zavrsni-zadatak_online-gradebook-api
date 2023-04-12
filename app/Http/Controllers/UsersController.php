@@ -13,12 +13,11 @@ class UsersController extends Controller
      */
     public function index(Request $request)
     {
-        $name = $request->query('first_name', '');
-        $lastName = $request->query('last_name', '');
+        $name = $request->query('name', '');
         $per_page = $request->query('per_page', 50);
 
         $teachers = User::with('gradebook')->searchByName($name)
-            ->searchByLastName($lastName)
+            ->searchByLastName($name)
             ->paginate($per_page);
 
         return response()->json($teachers);
