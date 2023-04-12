@@ -20,17 +20,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
-Route::post('/logout', [AuthController::class, 'logout']);
-Route::post('/gradebooks', [GradebooksController::class, 'store']);
-Route::post('/students', [StudentsController::class, 'store']);
+Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
+Route::post('/gradebooks', [GradebooksController::class, 'store'])->middleware('auth');
+Route::post('/students', [StudentsController::class, 'store'])->middleware('auth');
 
-Route::get('/gradebooks', [GradebooksController::class, 'index']);
-Route::get('/gradebooks/{id}', [GradebooksController::class, 'show']);
-Route::get('/teachers/all', [UsersController::class, 'teachersNoPaginate']);
-Route::get('/teachers', [UsersController::class, 'index']);
-Route::get('/teachers/{id}', [UsersController::class, 'show']);
-Route::get('/me', [UsersController::class, 'me']);
+Route::get('/gradebooks', [GradebooksController::class, 'index'])->middleware('auth');
+Route::get('/gradebooks/{id}', [GradebooksController::class, 'show'])->middleware('auth');
+Route::get('/teachers/all', [UsersController::class, 'teachersNoPaginate'])->middleware('auth');
+Route::get('/teachers', [UsersController::class, 'index'])->middleware('auth');
+Route::get('/teachers/{id}', [UsersController::class, 'show'])->middleware('auth');
+Route::get('/me', [UsersController::class, 'me'])->middleware('auth');
 
-Route::put('/gradebooks/{id}', [GradebooksController::class, 'update']);
+Route::put('/gradebooks/{id}', [GradebooksController::class, 'update'])->middleware('auth');
 
-Route::delete('/gradebooks/{id}', [GradebooksController::class, 'destroy']);
+Route::delete('/gradebooks/{id}', [GradebooksController::class, 'destroy'])->middleware('auth');
