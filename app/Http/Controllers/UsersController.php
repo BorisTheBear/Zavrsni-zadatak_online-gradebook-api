@@ -66,4 +66,10 @@ class UsersController extends Controller
             $query->with('students');
         }])->findOrFail(Auth::user()->id));
     }
+
+    public function teachersNoPaginate() {
+        $teachers = User::with('gradebook')->get();
+
+        return response()->json($teachers);
+    }
 }

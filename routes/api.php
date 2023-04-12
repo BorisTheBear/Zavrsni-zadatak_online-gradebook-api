@@ -26,6 +26,7 @@ Route::post('/students', [StudentsController::class, 'store']);
 
 Route::get('/gradebooks', [GradebooksController::class, 'index']);
 Route::get('/gradebooks/{id}', [GradebooksController::class, 'show']);
+Route::get('/teachers/all', [UsersController::class, 'teachersNoPaginate']);
 Route::get('/teachers', [UsersController::class, 'index']);
 Route::get('/teachers/{id}', [UsersController::class, 'show']);
 Route::get('/me', [UsersController::class, 'me']);
